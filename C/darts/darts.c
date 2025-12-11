@@ -2,7 +2,6 @@
 #include <string.h>
 #include <math.h>
 #include <ctype.h>
-#include "../utils.h"
 
 #define SMALL 1
 #define MEDIUM 5
