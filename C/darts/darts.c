@@ -3,6 +3,11 @@
 #include <math.h>
 #include <ctype.h>
 #include "../utils.h"
+
+#define SMALL 1
+#define MEDIUM 5
+#define LARGE 10
+
 void calculateDistance(float x, float y, float *distance) {
     *distance = x * x + y * y;
     *distance = sqrt(*distance); //Pythagoras Theorem 
@@ -17,33 +22,38 @@ int main(void) {
     while (1) {
         int resultX, resultY;
         int bufferCleaner;
-
+        
         printf("Enter 'x' coordinate of the dart: ");
         resultX = scanf("%f", &x); //validation happens at input
+        while((bufferCleaner = getchar()) != '\n' && bufferCleaner != EOF); //This line cleans hanging characters left in input buffer if parsing was unsuccessful. For instance, if user types 't', parsing fails and 't' gets left in input (scanf expects a number since we wrote "%f"), which for the next input the 't' will already be there (in input buffer) and make the next input fail.
+
         if (resultX == EOF) break;
-        while((bufferCleaner = getchar()) != '\n' && bufferCleaner != EOF); //This line cleans hanging characters left in input buffer if parsing was unsuccessful. For instance, if user types 't', parsing fails and 't' gets left in input (scanf expects a number since we wrote "%d"), which for the next input the 't' will already be there (in input buffer) and make the next input fail.
+        if (resultX != 1) {
+            fprintf(stderr, "Please enter real numbers.\n");
+            continue;
+        }  
 
         printf("Enter 'y' coordinate of the dart: ");
         resultY = scanf("%f", &y);
-        if (resultY == EOF) break;
         while((bufferCleaner = getchar()) != '\n' && bufferCleaner != EOF);
 
-        if (resultX != 1 || resultY != 1) {
+        if (resultY == EOF) break;
+        if (resultY != 1) {
             fprintf(stderr, "Please enter real numbers.\n");
             continue;
-        } 
+        }
 
-        calculateScore(x, y, &distance);
-        if (distance > 10) {
+        calculateDistance(x, y, &distance);
+        if (distance > LARGE) {
             printf("Your score is 0.\n");
-        } else if (distance <= 10 && distance > 5) {
-            totalScore++;
+        } else if (distance <= LARGE && distance > MEDIUM) {
+            totalScore += SMALL;
             printf("Your score is 1.\n");
-        } else if (distance <= 5 && distance > 1) {
-            totalScore += 5;
+        } else if (distance <= MEDIUM && distance > SMALL) {
+            totalScore += MEDIUM;
             printf("Your score is 5.\n");
         } else {
-            totalScore += 10;
+            totalScore += LARGE;
             printf("Your score is 10.\n");
         }
     }
