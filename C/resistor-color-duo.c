@@ -8,10 +8,10 @@ const char *colors[] = {
     "green", "blue", "violet", "grey", "white"
 };
 
-int numColors = sizeof(colors) / sizeof(colors[0]);
+int totalColorsLength = sizeof(colors) / sizeof(colors[0]);
 
 int colorCode(const char *str) {
-   for (int i = 0; i < numColors; i++) {
+   for (int i = 0; i < totalColorsLength; i++) {
         if (strcmp(str, colors[i]) == 0) {
             return i;
         }
@@ -20,38 +20,39 @@ int colorCode(const char *str) {
 }
 
 int main(void) { //this function takes zero arguments
+    printf("Press Ctrl + C to exit.\n");
     char color[30];
     int value = 0;
     int *codeArray = NULL; 
     int numColors = 0;
     while (1) {
-        printf("Resistor color calculator\n"
+        printf("\nResistor color calculator\n"
                 "Black: 0, Brown: 1, Red: 2, Orange: 3, Yellow: 4, Green: 5, "
                 "Blue: 6, Violet: 7, Grey: 8, White: 9\n"
                 "Enter color: ");
         scanf("%s", color);
-        if (!isAlphaString(&color)) {
-            fprintf(stderr, "Please enter valid colors.");
+        if (!isAlphaString(color)) {
+            fprintf(stderr, "Please enter valid colors.\n");
             continue;
         }
-        if (numColors < 2){
-            strToLower(color);
-            value = colorCode(color);
-            if (value == -1) {
-                fprintf(stderr, "Color does not have assigned value. Enter another color.");
-                continue;
-            }
-            int *temp = realloc(codeArray, (numColors + 1) * sizeof(int));
-            if (!temp) {
-                fprintf(stderr, "Memory allocation failed, try again\n");
-                return -1;
-            }
-            codeArray = temp;
-            codeArray[numColors++] = value;
-        } else {
-            printf("Resistor code: %d%d", codeArray[0], codeArray[1]);
-            numColors = 0;
+        strToLower(color);
+        value = colorCode(color);
+        if (value == -1) {
+            fprintf(stderr, "Color does not have assigned value. Enter another color.\n");
+            continue;
         }
+        int *temp = realloc(codeArray, (numColors + 1) * sizeof(int));
+        if (!temp) {
+            fprintf(stderr, "Memory allocation failed, try again\n");
+            return -1;
+        }
+        codeArray = temp;
+        codeArray[numColors++] = value;
+        if (numColors == 2) {
+            printf("Resistor code: %d%d\n", codeArray[0], codeArray[1]);
+            numColors = 0;
+        
+        } 
     }
     return 0; //non-zero values signal an error
 }
