@@ -25,14 +25,24 @@ int main(void) {
     printf("Type \'done\' to print resulting code.\n");
     char color[MAX_COLOR_LEN];
     int value = 0;
-    int codeArray[2]; 
+    int codeArray[2] = {0}; 
     int numColors = 0;
     while (1) {
         printf("\nResistor color calculator.\n"
                 "Black: 0, Brown: 1, Red: 2, Orange: 3, Yellow: 4, Green: 5, "
                 "Blue: 6, Violet: 7, Grey: 8, White: 9\n");
-        printf("Enter color %d", numColors + 1);
+        printf("Enter next color: ");
         scanf("%s", color);
+        if (strcmp(color, "done") == 0) {
+            if (numColors < 2) {
+                fprintf(stderr, "Error: You need at least 2 colors to calculate resistance.\n");
+                continue;
+            } else {
+                printf("Resistor code: %d%d\n", codeArray[0], codeArray[1]);
+                numColors = 0;
+                continue;
+            }   
+        } 
         if (numColors < 2) {
             if (!isAlphaString(color)) {
                 fprintf(stderr, "Please enter valid colors.\n");
@@ -46,10 +56,6 @@ int main(void) {
             }
             codeArray[numColors++] = value;
         }
-        if (strcmp(color, "done") == 0) {
-            printf("Resistor code: %d%d\n", codeArray[0], codeArray[1]);
-            numColors = 0;
-        } 
     }
     return 0; 
 }
