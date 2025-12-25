@@ -4,6 +4,7 @@
 
 bool isAlphaString(const char *string);
 void strToLower(char *s);
+void strToUpper(char *s);
 void trimString(char *str);
 void flushInputBuffer(const char *buffer);
 

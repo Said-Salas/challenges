@@ -17,6 +17,9 @@ bool isAlphaString(const char *string) {
 void strToLower(char *s) {
     for (; *s; ++s) *s = (char)tolower((unsigned char)*s);
 }
+void strToUpper(char *s) {
+    for (; *s; ++s) *s = (char)toupper((unsigned char)*s);
+}
 
 void trimString(char *str) {
     char *start = str;

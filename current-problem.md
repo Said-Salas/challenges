@@ -1,27 +1,19 @@
-- gcc darts.c -o darts -lm //when using math library
+Introduction
+Your body is made up of cells that contain DNA. Those cells regularly wear out and need replacing, which they achieve by dividing into daughter cells. In fact, the average human body experiences about 10 quadrillion cell divisions in a lifetime!
 
-Challenge: 
-// Instructions
-// If you want to build something using a Raspberry Pi, you'll probably use resistors. For this exercise, you need to know two things about them:
+When cells divide, their DNA replicates too. Sometimes during this process mistakes happen and single pieces of DNA get encoded with the incorrect information. If we compare two strands of DNA and count the differences between them, we can see how many mistakes occurred. This is known as the "Hamming distance".
 
-// Each resistor has a resistance value.
-// Resistors are small - so small in fact that if you printed the resistance value on them, it would be hard to read.
-// To get around this problem, manufacturers print color-coded bands onto the resistors to denote their resistance values. Each band has a position and a numeric value.
+The Hamming distance is useful in many areas of science, not just biology, so it's a nice phrase to be familiar with :)
 
-// The first 2 bands of a resistor have a simple encoding scheme: each color maps to a single number. For example, if they printed a brown band (value 1) followed by a green band (value 5), it would translate to the number 15.
+Instructions
+Calculate the Hamming distance between two DNA strands.
 
-// In this exercise you are going to create a helpful program so that you don't have to remember the values of the bands. The program will take color names as input and output a two digit number, even if the input is more than two colors!
+We read DNA using the letters C, A, G and T. Two strands might look like this:
 
-// The band colors are encoded as follows:
+GAGCCTACTAACGGGAT
+CATCGTAATGACGGCCT
+^ ^ ^  ^ ^    ^^
+They have 7 differences, and therefore the Hamming distance is 7.
 
-// black: 0
-// brown: 1
-// red: 2
-// orange: 3
-// yellow: 4
-// green: 5
-// blue: 6
-// violet: 7
-// grey: 8
-// white: 9
-// From the example above: brown-green should return 15, and brown-green-violet should return 15 too, ignoring the third color.
+Implementation notes
+The Hamming distance is only defined for sequences of equal length, so an attempt to calculate it between sequences of different lengths should not work.
