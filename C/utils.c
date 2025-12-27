@@ -34,9 +34,7 @@ void trimString(char *str) {
     }
 }
 
-void flushInputBuffer(const char *buffer) {
-    if (strchr(buffer, '\n') == NULL) {
-        int leftoverC;
-        while ((leftoverC = getchar()) != '\n' && leftoverC != EOF);
-    }
+void clearBuffer(void) {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
