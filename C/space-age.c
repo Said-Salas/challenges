@@ -3,7 +3,7 @@
 #include <ctype.h>
 #define MAX_LEN 30
 
-int calculateAge(int age, const char *planet) {
+float calculateAge(int age, const char *planet) {
     char c = toupper((unsigned char)planet[0]);
     switch(c) {
         case 'M':
@@ -30,6 +30,7 @@ int calculateAge(int age, const char *planet) {
 }
 
 int main(void) {
+    printf("Press Ctrl + C to end program\n");
     printf("Interplanetary Age Calculator\n");
     printf("Calculate your age in any planet in our Solar System.\n");
     int age = 0;
@@ -38,22 +39,28 @@ int main(void) {
     while(1) {
         printf("Enter your age in Earth years: ");
 
-        if !(scanf("%d", &age) == 1) {
+        if (!(scanf("%d", &age) == 1)) {
             fprintf(stderr, "Please enter a valid age.\n");
             clearBuffer();
             continue;
         } 
 
+        clearBuffer();
+
+        printf("Entered age was: %d\n", age);
+
         if (age > 0) {
             printf("Enter name of Solar System planet: ");
             scanf("%29s", planet); //Adding 29 for a max length of 30 (30 was specified by me) prevents a buffer overflow.
-            clearBuffer()
-            int newAge = calculateAge(&age, planet);
+            clearBuffer();
+            float newAge = calculateAge(age, planet);
             if (newAge != -1) {
-                planet[0] = toupper((unsigned char)planet[0]);
-                printf("Your age of %d years in Earth becomes an age of %d years in %s\n", age, newAge, planet);
+                char *trimmedPlanet = planet + 1;
+                strToLower(trimmedPlanet);
+                char c = toupper((unsigned char)planet[0]);
+                printf("Your age of %d years in Earth becomes an age of %.2f years in %c%s\n", age, newAge, c, trimmedPlanet);
             } else {
-                fprintf(stderr, "Planet does not exist in our Solar System,\n");
+                fprintf(stderr, "Planet does not exist in our Solar System.\n");
             }
         } else {
             fprintf(stderr, "Please enter an age greater than 0 years.\n");
