@@ -4,7 +4,7 @@ The year is 2525 and you've just embarked on a journey to visit all planets in t
 Amused, you wait for the customs officer to start laughing, but they appear to be dead serious. You realize that you've entered your age in Earth years, but the officer expected it in Mercury years! As Mercury's orbital period around the sun is significantly shorter than Earth, you're actually a lot older in Mercury years. After some quick calculations, you're able to provide your age in Mercury Years. The customs officer smiles, satisfied, and waves you through. You make a mental note to pre-calculate your planet-specific age before future customs checks, to avoid such mix-ups.
 
 Instructions
-Given an age in seconds, calculate how old someone would be on a planet in our Solar System.
+Given an age in years, calculate how old someone would be on a planet in our Solar System.
 
 One Earth year equals 365.25 Earth days, or 31,557,600 seconds. If you were told someone was 1,000,000,000 seconds old, their age would be 31.69 Earth-years.
 

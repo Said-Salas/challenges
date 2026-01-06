@@ -4,10 +4,10 @@
 #include <ctype.h>
 #include <stdbool.h>
 #define MAX_LEN 30
-
+//usage of 'unsigned long long' was only done for learning purposes. Not needed and adds complexity--I know.
 const char *planets[] = {
-    "mercury", "venus", "earth", "mars", "jupiter", "saturn",
-    "uranus", "neptune"
+    "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn",
+    "Uranus", "Neptune"
 };
 
 const float orbitalPeriod[] = {
@@ -15,12 +15,13 @@ const float orbitalPeriod[] = {
     164.79132 
 };
 
-int planetsLength = sizeof(planets) / sizeof(planets[0]);
-
 float calculateAge(int age, const char *planet) {
-    for (int i = 0; i < planetsLength; i++) {
-        if (strcmp(planet, planets[i]) == 0) {
-            return age / orbitalPeriod[i];
+
+    int length = sizeof(planets) / sizeof(planets[0]);
+    unsigned long long ageSeconds = (unsigned long long)age * 31557600;
+    for (int i = 0; i < length; i++) {
+        if (strcasecmp(planet, planets[i]) == 0) {
+            return (ageSeconds / orbitalPeriod[i]) / 365 / 24 / 60 / 60;
         }
     }
     return -1;
@@ -49,9 +50,10 @@ int main(void) {
             scanf("%29s", planet); //Adding 29 for a max length of 30 (30 was specified by me) prevents a buffer overflow.
             clearBuffer();
             strToLower(planet);
-            float newAge = calculateAge(age, planet);
+            double newAge = calculateAge(age, planet);
             if (newAge != -1) {
                 char *trimmedPlanet = planet + 1;
+                strToLower(trimmedPlanet);
                 char c = toupper((unsigned char)planet[0]);
                 printf("Your age of %d years in Earth becomes an age of %.2f years in %c%s\n", age, newAge, c, trimmedPlanet);
             } else {
