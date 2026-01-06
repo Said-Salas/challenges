@@ -1,32 +1,29 @@
 #include <stdio.h>
+#include <string.h>
 #include "utils.h"
 #include <ctype.h>
+#include <stdbool.h>
 #define MAX_LEN 30
 
+const char *planets[] = {
+    "mercury", "venus", "earth", "mars", "jupiter", "saturn",
+    "uranus", "neptune"
+};
+
+const float orbitalPeriod[] = {
+    0.2408467, 0.61519726, 1.0, 1.8808158, 11.862615, 29.447498, 84.016846,
+    164.79132 
+};
+
+int planetsLength = sizeof(planets) / sizeof(planets[0]);
+
 float calculateAge(int age, const char *planet) {
-    char c = toupper((unsigned char)planet[0]);
-    switch(c) {
-        case 'M':
-            if (toupper((unsigned char)planet[1]) == 'E') {
-                return age / 0.2408467;
-            } else {
-                return age / 1.8808158;
-            } 
-        case 'V':
-            return age / 0.61519726;
-        case 'E':
-            return age;
-        case 'J':
-            return age / 11.862615;
-        case 'S':
-            return age / 29.447498;
-        case 'U':
-            return age / 84.016846;
-        case 'N':
-            return age / 164.79132;
-        default:
-            return -1;
+    for (int i = 0; i < planetsLength; i++) {
+        if (strcmp(planet, planets[i]) == 0) {
+            return age / orbitalPeriod[i];
+        }
     }
+    return -1;
 }
 
 int main(void) {
@@ -47,16 +44,14 @@ int main(void) {
 
         clearBuffer();
 
-        printf("Entered age was: %d\n", age);
-
         if (age > 0) {
             printf("Enter name of Solar System planet: ");
             scanf("%29s", planet); //Adding 29 for a max length of 30 (30 was specified by me) prevents a buffer overflow.
             clearBuffer();
+            strToLower(planet);
             float newAge = calculateAge(age, planet);
             if (newAge != -1) {
                 char *trimmedPlanet = planet + 1;
-                strToLower(trimmedPlanet);
                 char c = toupper((unsigned char)planet[0]);
                 printf("Your age of %d years in Earth becomes an age of %.2f years in %c%s\n", age, newAge, c, trimmedPlanet);
             } else {
