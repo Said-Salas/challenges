@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "utils.h"
 
-void rnaStrand(const char *strand, *rna) {
-    int len = strlen(strand);
+void rnaStrand(const char *dna, char *rna) {
+    int len = strlen(dna);
     for (int i = 0; i < len; i++) {
-        switch(strand[i]) {
-            case 'G': rna[i] = 'G'; break;
+        switch(dna[i]) {
+            case 'G': rna[i] = 'C'; break;
             case 'C': rna[i] = 'G'; break;
             case 'T': rna[i] = 'A'; break;
             case 'A': rna[i] = 'U'; break;
@@ -40,10 +41,10 @@ int main(void) {
         int storedBases = 0;
         printf("Enter sequence of DNA: ");
         scanf("%s", dna);
-        if (onlyCAGT(dna)); {
+        if (onlyCAGT(dna)) {
             strToUpper(dna);
             rnaStrand(dna, rna);
-            printf("RNA sequence for given DNA sequence is: %s", rna);
+            printf("RNA sequence for given DNA sequence is: %s\n", rna);
         }
     }
     return 0;
