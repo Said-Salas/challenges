@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "utils.h"
+#define MAX_LEN 41
 
 void rnaStrand(const char *dna, char *rna) {
     int len = strlen(dna);
@@ -14,6 +15,7 @@ void rnaStrand(const char *dna, char *rna) {
             case 'A': rna[i] = 'U'; break;
         }
     }
+    rna[len] = '\0';
 }
 
 bool onlyCAGT(char *strand) {
@@ -36,16 +38,16 @@ bool onlyCAGT(char *strand) {
 int main(void) {
     printf("Press Ctrl + C to exit\n");
     while (1) {
-        char *dna = malloc(41 * sizeof(char)); 
-        char *rna = malloc(41 * sizeof(char));
-        int storedBases = 0;
+        char *dna = malloc(MAX_LEN); 
+        char *rna = malloc(MAX_LEN);
         printf("Enter sequence of DNA: ");
-        scanf("%s", dna);
+        scanf("%40s", dna);
         if (onlyCAGT(dna)) {
             strToUpper(dna);
             rnaStrand(dna, rna);
             printf("RNA sequence for given DNA sequence is: %s\n", rna);
         }
+        free(dna); free(rna);
     }
     return 0;
 }
