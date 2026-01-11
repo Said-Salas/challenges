@@ -2,6 +2,7 @@
 #define UTILS_H
 #include <stdbool.h>
 
+char *readInput(void);
 bool isAlphaString(const char *string);
 void strToLower(char *s);
 void strToUpper(char *s);

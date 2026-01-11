@@ -1,9 +1,35 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <stddef.h> //for type 'size_t'
 #include "utils.h"
+
+char *readInput(void) {
+    int capacity = 10;
+    int length = 0;
+    char *buffer = malloc(capacity);
+
+    if (!buffer) return NULL;
+
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {
+        if (length + 1 >= capacity) {
+            capacity *= 2;
+            char *newBuffer = realloc(buffer, capacity);
+            if (!newBuffer) {
+                free(buffer);
+                return NULL;
+            }
+            buffer = newBuffer;
+        }
+        buffer[length++] = (char)c;
+    }
+    buffer[length] = '\0';
+    return buffer;
+}
+
 
 bool isAlphaString(const char *string) {
     for(int i = 0; string[i] != '\0'; i++) {

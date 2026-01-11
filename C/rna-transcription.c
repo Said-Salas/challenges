@@ -1,12 +1,10 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include "utils.h"
-#define MAX_LEN 41
 
-void rnaStrand(const char *dna, char *rna) {
-    int len = strlen(dna);
+void rnaStrand(const char *dna, char *rna, int len) {
     for (int i = 0; i < len; i++) {
         switch(dna[i]) {
             case 'G': rna[i] = 'C'; break;
@@ -18,9 +16,8 @@ void rnaStrand(const char *dna, char *rna) {
     rna[len] = '\0';
 }
 
-bool onlyCAGT(char *strand) {
+bool onlyCAGT(char *strand, int len) {
     if (isAlphaString(strand)) {
-        int len = strlen(strand);
         for (int i = 0; i < len; i++) {
             char c = toupper((unsigned char)strand[i]);
             if (c != 'C' && c != 'A' && c != 'G' && c != 'T') {
@@ -38,16 +35,24 @@ bool onlyCAGT(char *strand) {
 int main(void) {
     printf("Press Ctrl + C to exit\n");
     while (1) {
-        char *dna = malloc(MAX_LEN); 
-        char *rna = malloc(MAX_LEN);
         printf("Enter sequence of DNA: ");
-        scanf("%40s", dna);
-        if (onlyCAGT(dna)) {
-            strToUpper(dna);
-            rnaStrand(dna, rna);
-            printf("RNA sequence for given DNA sequence is: %s\n", rna);
+        char *dna = readInput();
+        if (!dna) {
+            fprintf(stderr, "Memory error.\n");
+            break;
         }
-        free(dna); free(rna);
+
+        int len = strlen(dna);
+        if (len > 0 && onlyCAGT(dna, len)) {
+            strToUpper(dna);
+            char *rna = malloc(len + 1);
+            if (rna) {
+                rnaStrand(dna, rna, len);
+                printf("RNA sequence for given DNA sequence is: %s\n", rna);
+                free(rna);
+            }
+        }
+        free(dna); 
     }
     return 0;
 }
