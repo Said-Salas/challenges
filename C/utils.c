@@ -31,20 +31,31 @@ char *readInput(void) {
 }
 
 
-bool isAlphaString(const char *string) {
-    for(int i = 0; string[i] != '\0'; i++) {
-        if(!isalpha(string[i])) {
+bool isAlphaString(const char *str) {
+    for(int i = 0; str[i] != '\0'; i++) {
+        if(!isalpha(str[i])) {
             return false;
         }
     }
     return true;
 }
 
-void strToLower(char *s) {
-    for (; *s; ++s) *s = (char)tolower((unsigned char)*s);
+ bool isNumeric(const char *str) {
+    if (!str || *str == '\0') return false;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        if(!isdigit((unsigned char)str[i])) {
+            return false;
+        }
+    }
+    return true;
+ }
+
+void strToLower(char *str) {
+    for (; *str; ++str) *str = (char)tolower((unsigned char)*str);
 }
-void strToUpper(char *s) {
-    for (; *s; ++s) *s = (char)toupper((unsigned char)*s);
+void strToUpper(char *str) {
+    for (; *str; ++str) *str = (char)toupper((unsigned char)*str);
 }
 
 void trimString(char *str) {

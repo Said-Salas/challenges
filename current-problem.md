@@ -1,29 +1,22 @@
-Introduction
-You work for a bioengineering company that specializes in developing therapeutic solutions.
-
-Your team has just been given a new project to develop a targeted therapy for a rare type of cancer.
-
-Note
-It's all very complicated, but the basic idea is that sometimes people's bodies produce too much of a given protein. That can cause all sorts of havoc.
-
-But if you can create a very specific molecule (called a micro-RNA), it can prevent the protein from being produced.
-
-This technique is called RNA Interference.
-
 Instructions
-Your task is to determine the RNA complement of a given DNA sequence.
+Convert a binary number, represented as a string (e.g. '101010'), to its decimal equivalent using first principles.
 
-Both DNA and RNA strands are a sequence of nucleotides.
+Implement binary to decimal conversion. Given a binary input string, your program should produce a decimal output. The program should handle invalid inputs.
 
-The four nucleotides found in DNA are adenine (A), cytosine (C), guanine (G), and thymine (T).
-
-The four nucleotides found in RNA are adenine (A), cytosine (C), guanine (G), and uracil (U).
-
-Given a DNA strand, its transcribed RNA strand is formed by replacing each nucleotide with its complement:
-
-G -> C
-C -> G
-T -> A
-A -> U
 Note
-If you want to look at how the inputs and outputs are structured, take a look at the examples in the test suite.
+Implement the conversion yourself. Do not use something else to perform the conversion for you.
+About Binary (Base-2)
+Decimal is a base-10 system.
+
+A number 23 in base 10 notation can be understood as a linear combination of powers of 10:
+
+The rightmost digit gets multiplied by 10^0 = 1
+The next number gets multiplied by 10^1 = 10
+...
+The nth number gets multiplied by 10^(n-1).
+All these values are summed.
+So: 23 => 2*10^1 + 3*10^0 => 2*10 + 3*1 = 23 base 10
+
+Binary is similar, but uses powers of 2 rather than powers of 10.
+
+So: 101 => 1*2^2 + 0*2^1 + 1*2^0 => 1*4 + 0*2 + 1*1 => 4 + 1 => 5 base 10.
