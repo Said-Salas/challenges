@@ -8,7 +8,7 @@
 void binToDec(int *digit, const char *str, int len) {
     for (int i = 0; i < len; i++) {
         int bin = str[i] - '0';
-        digit += bin * (int)pow(2, len - (i + 1));
+        *digit += bin * (int)pow(2, len - (i + 1));
     }
 }
 
