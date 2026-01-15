@@ -4,7 +4,6 @@
 #include <string.h>
 #define MAX_LEN 41
 
-
 int binToDec(const char *str, int len) {
     int digit = 0;
     for (int i = 0; i < len; i++) {

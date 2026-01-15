@@ -1,22 +1,47 @@
+Introduction
+Your friend Eliud inherited a farm from her grandma Tigist. Her granny was an inventor and had a tendency to build things in an overly complicated manner. The chicken coop has a digital display showing an encoded number representing the positions of all eggs that could be picked up.
+
+Eliud is asking you to write a program that shows the actual number of eggs in the coop.
+
+The position information encoding is calculated as follows:
+
+Scan the potential egg-laying spots and mark down a 1 for an existing egg or a 0 for an empty spot.
+Convert the number from binary to decimal.
+Show the result on the display.
+Example 1
+Seven individual nest boxes arranged in a row whose first, third, fourth and seventh nests each have a single egg.
+
+ _ _ _ _ _ _ _
+|E| |E|E| | |E|
+Resulting Binary
+1011001
+
+ _ _ _ _ _ _ _
+|1|0|1|1|0|0|1|
+Decimal number on the display
+89
+
+Actual eggs in the coop
+4
+
+Example 2
+Seven individual nest boxes arranged in a row where only the fourth nest has an egg.
+
+ _ _ _ _ _ _ _
+| | | |E| | | |
+Resulting Binary
+0001000
+
+ _ _ _ _ _ _ _
+|0|0|0|1|0|0|0|
+Decimal number on the display
+8
+
+Actual eggs in the coop
+1
+
 Instructions
-Convert a binary number, represented as a string (e.g. '101010'), to its decimal equivalent using first principles.
+Your task is to count the number of 1 bits in the binary representation of a number.
 
-Implement binary to decimal conversion. Given a binary input string, your program should produce a decimal output. The program should handle invalid inputs.
-
-Note
-Implement the conversion yourself. Do not use something else to perform the conversion for you.
-About Binary (Base-2)
-Decimal is a base-10 system.
-
-A number 23 in base 10 notation can be understood as a linear combination of powers of 10:
-
-The rightmost digit gets multiplied by 10^0 = 1
-The next number gets multiplied by 10^1 = 10
-...
-The nth number gets multiplied by 10^(n-1).
-All these values are summed.
-So: 23 => 2*10^1 + 3*10^0 => 2*10 + 3*1 = 23 base 10
-
-Binary is similar, but uses powers of 2 rather than powers of 10.
-
-So: 101 => 1*2^2 + 0*2^1 + 1*2^0 => 1*4 + 0*2 + 1*1 => 4 + 1 => 5 base 10.
+Restrictions
+Keep your hands off that bit-count functionality provided by your standard library! Solve this one yourself using other basic tools instead.
