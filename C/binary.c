@@ -2,14 +2,23 @@
 #include <stdlib.h>
 #include "utils.h"
 #include <string.h>
-#include <math.h>
 #define MAX_LEN 41
 
-void binToDec(int *digit, const char *str, int len) {
+int powerOfTwo(int exponent) {
+    int value = 1; //2^0 = 1
+    for (int k = 0; k < exponent; k++) {
+        value = value * 2;
+    }
+    return value;
+}
+
+int binToDec(const char *str, int len) {
+    int digit = 0;
     for (int i = 0; i < len; i++) {
         int bin = str[i] - '0';
-        *digit += bin * (int)pow(2, len - (i + 1));
+        digit += bin * powerOfTwo(len - 1 - i);
     }
+    return digit;
 }
 
 bool onlyZeroOne(const char *str, int len) {
@@ -24,7 +33,6 @@ bool onlyZeroOne(const char *str, int len) {
 int main(void) {
     printf("Press Ctrl + C to exit program.\n");
     while (1) {
-        int digit = 0;
         printf("Enter binary number: ");
         char *binary = readInput();
         if (!binary) {
@@ -32,13 +40,14 @@ int main(void) {
             break;
         }
         int len = strlen(binary);
-        if (!isNumeric(binary) || !onlyZeroOne(binary, len)) {
+        if (!onlyZeroOne(binary, len)) {
             fprintf(stderr, "Please enter only 0s and 1s.\n");
             free(binary);
             continue;
         }
-        binToDec(&digit, binary, len);
+        int digit = binToDec(binary, len);
         printf("Binary %s is number %d\n", binary, digit);
+        free(binary);
     }
     return 0;
 }
