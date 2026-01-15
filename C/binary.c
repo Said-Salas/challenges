@@ -4,19 +4,11 @@
 #include <string.h>
 #define MAX_LEN 41
 
-int powerOfTwo(int exponent) {
-    int value = 1; //2^0 = 1
-    for (int k = 0; k < exponent; k++) {
-        value = value * 2;
-    }
-    return value;
-}
 
 int binToDec(const char *str, int len) {
     int digit = 0;
     for (int i = 0; i < len; i++) {
-        int bin = str[i] - '0';
-        digit += bin * powerOfTwo(len - 1 - i);
+       digit = (digit * 2) + (str[i] - '0');
     }
     return digit;
 }
