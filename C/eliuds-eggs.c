@@ -4,42 +4,31 @@
 #include <stdlib.h>
 #include "utils.h"
 
-int binToDec(const char *str, int len) {
-    int digit = 0;
-    for (int i = 0; i < len; i++) {
-       digit = (digit * 2) + (str[i] - '0');
-    }
-    return digit;
-}
 
-bool countEggs(const char *str, int len, int *eggs) {
-    for (int i = 0; i < len; i++) {
-        if (str[i] != '0' && str[i] != '1') {
-            return false;
+void countEggs(int *number, int *eggs) {
+    while (number != 0) {
+        if (*number % 2 == 1) {
+            *eggs += 1;
         }
+        *number /= 2;
     }
-    for (int i = 0; i < len; i++) {
-        if (str[i] == '1') {
-            (*eggs)++;
-        }
-    }
-    return true;
 }
 
 int main(void) {
     printf("Press Ctrl + C to exit program.\n");
     while (1) {
-        printf("Enter sequence of nest boxes: ");
-        char *boxes = readInput();
-        int len = strlen(boxes);
-        int eggs = 0;
-        if (!countEggs(boxes, len, &eggs)) {
+        printf("Enter number on display case: ");
+        char *numberText = readInput();
+        if (!isNumeric(numberText)) {
             fprintf(stderr,  "Please enter only 0s and 1s\n");
-            free(boxes);
+            free(numberText);
             continue;
         } 
-        printf("Binary %s is number %d.\nActual eggs in coop are %d.\n", boxes, binToDec(boxes, len), eggs);
-        free(boxes);
+        int number = stringToInt(numberText);
+        int eggs = 0;
+        countEggs(&number, &eggs);
+        printf("Eggs on nest: %d\n", eggs);
+        free(numberText);
     }
     return 0;
 }
