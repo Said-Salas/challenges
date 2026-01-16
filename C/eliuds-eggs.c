@@ -6,7 +6,7 @@
 
 
 void countEggs(int *number, int *eggs) {
-    while (number != 0) {
+    while (*number != 0) {
         if (*number % 2 == 1) {
             *eggs += 1;
         }
