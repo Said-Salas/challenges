@@ -5,6 +5,7 @@
 char *readInput(void);
 bool isAlphaString(const char *str);
 bool isNumeric(const char *str);
+int stringToInt(const char *str);
 void strToLower(char *str);
 void strToUpper(char *str);
 void trimString(char *str);

@@ -40,15 +40,38 @@ bool isAlphaString(const char *str) {
     return true;
 }
 
- bool isNumeric(const char *str) {
+ bool isNumeric(const char *str) { 
     if (!str || *str == '\0') return false;
+    int i = 0;
 
-    for (int i = 0; str[i] != '\0'; i++) {
+    if (str[0] == '-') {
+        i++;
+
+        if (str[i] == '\0') return false;
+    }
+
+    for (; str[i] != '\0'; i++) {
         if(!isdigit((unsigned char)str[i])) {
             return false;
         }
     }
     return true;
+ }
+
+ int stringToInt(const char *str) {
+    int result = 0;
+    int i = 0;
+    
+    int sign = 1;
+    if (str[0] == '-') {
+        sign = -1;
+        i++;
+    }
+
+    for (; str[i] != '\0'; i++) {
+        result = (result * 10) + (str[i] - '0');
+    }
+    return result * sign;
  }
 
 void strToLower(char *str) {
