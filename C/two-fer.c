@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "utils.h"
 
 int main(void) {
@@ -8,11 +9,8 @@ int main(void) {
     while (1) {
         printf("Enter name of person in the queue. If not known, just hit enter: ");
         char *name = readInput();
-        if(!(name[0] == '\0')) {
-            printf("One for %s, one for me\n", name);
-        } else {
-            printf("One for you, one for me\n");
-        }
+        printf("One for %s, one for me.\n", (name && *name) ? name : "you");
+        free(name);
     }
 
     return 0;
