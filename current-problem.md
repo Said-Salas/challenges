@@ -1,47 +1,21 @@
 Introduction
-Your friend Eliud inherited a farm from her grandma Tigist. Her granny was an inventor and had a tendency to build things in an overly complicated manner. The chicken coop has a digital display showing an encoded number representing the positions of all eggs that could be picked up.
+In some English accents, when you say "two for" quickly, it sounds like "two fer". Two-for-one is a way of saying that if you buy one, you also get one for free. So the phrase "two-fer" often implies a two-for-one offer.
 
-Eliud is asking you to write a program that shows the actual number of eggs in the coop.
-
-The position information encoding is calculated as follows:
-
-Scan the potential egg-laying spots and mark down a 1 for an existing egg or a 0 for an empty spot.
-Convert the number from binary to decimal.
-Show the result on the display.
-Example 1
-Seven individual nest boxes arranged in a row whose first, third, fourth and seventh nests each have a single egg.
-
- _ _ _ _ _ _ _
-|E| |E|E| | |E|
-Resulting Binary
-1011001
-
- _ _ _ _ _ _ _
-|1|0|1|1|0|0|1|
-Decimal number on the display
-89
-
-Actual eggs in the coop
-4
-
-Example 2
-Seven individual nest boxes arranged in a row where only the fourth nest has an egg.
-
- _ _ _ _ _ _ _
-| | | |E| | | |
-Resulting Binary
-0001000
-
- _ _ _ _ _ _ _
-|0|0|0|1|0|0|0|
-Decimal number on the display
-8
-
-Actual eggs in the coop
-1
+Imagine a bakery that has a holiday offer where you can buy two cookies for the price of one ("two-fer one!"). You take the offer and (very generously) decide to give the extra cookie to someone else in the queue.
 
 Instructions
-Your task is to count the number of 1 bits in the binary representation of a number.
+Your task is to determine what you will say as you give away the extra cookie.
 
-Restrictions
-Keep your hands off that bit-count functionality provided by your standard library! Solve this one yourself using other basic tools instead.
+If you know the person's name (e.g. if they're named Do-yun), then you will say:
+
+One for Do-yun, one for me.
+If you don't know the person's name, you will say you instead.
+
+One for you, one for me.
+Here are some examples:
+
+Name	Dialogue
+Alice	One for Alice, one for me.
+Bohdan	One for Bohdan, one for me.
+One for you, one for me.
+Zaphod	One for Zaphod, one for me.
