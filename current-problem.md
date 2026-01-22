@@ -1,21 +1,18 @@
 Introduction
-In some English accents, when you say "two for" quickly, it sounds like "two fer". Two-for-one is a way of saying that if you buy one, you also get one for free. So the phrase "two-fer" often implies a two-for-one offer.
-
-Imagine a bakery that has a holiday offer where you can buy two cookies for the price of one ("two-fer one!"). You take the offer and (very generously) decide to give the extra cookie to someone else in the queue.
+Raindrops is a slightly more complex version of the FizzBuzz challenge, a classic interview question.
 
 Instructions
-Your task is to determine what you will say as you give away the extra cookie.
+Your task is to convert a number into its corresponding raindrop sounds.
 
-If you know the person's name (e.g. if they're named Do-yun), then you will say:
+If a given number:
 
-One for Do-yun, one for me.
-If you don't know the person's name, you will say you instead.
-
-One for you, one for me.
-Here are some examples:
-
-Name	Dialogue
-Alice	One for Alice, one for me.
-Bohdan	One for Bohdan, one for me.
-One for you, one for me.
-Zaphod	One for Zaphod, one for me.
+is divisible by 3, add "Pling" to the result.
+is divisible by 5, add "Plang" to the result.
+is divisible by 7, add "Plong" to the result.
+is not divisible by 3, 5, or 7, the result should be the number as a string.
+Examples
+28 is divisible by 7, but not 3 or 5, so the result would be "Plong".
+30 is divisible by 3 and 5, but not 7, so the result would be "PlingPlang".
+34 is not divisible by 3, 5, or 7, so the result would be "34".
+Note
+A common way to test if one number is evenly divisible by another is to compare the remainder or modulus to zero. Most languages provide operators or functions for one (or both) of these.
