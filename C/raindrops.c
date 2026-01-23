@@ -3,15 +3,15 @@
 #include <string.h>
 #include "utils.h"
 
-void phraseBuilder(int number, *str) {
+void phraseBuilder(int number, char *str) {
     if (number % 3 == 0) {
-        phrase = "Pling";
+        strcat(str, "Pling");
     }
     if (number % 5 == 0) {
-        phrase += "Plang";
+        strcat(str, "Plang");
     }
-    if (phrase % 7 == 0) {
-        phrase += "Plong"
+    if (number % 7 == 0) {
+        strcat(str, "Plong");
     }
 }
 
@@ -27,12 +27,14 @@ int main(void) {
             continue;
         }
         int number = stringToInt(numberText);
-        char *phrase = "";
+        char phrase[40] = "";
         phraseBuilder(number, phrase);
-        if ()
-        
+        if (!(strlen(phrase) > 0)) {
+            printf("%d\n", number);
+        } else {
+            printf("%s\n", phrase);
+        }
         free(numberText);
     }
-
     return 0;
 }
