@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utils.h"
+#define BUFFER_SIZE 40
 
 void phraseBuilder(int number, char *str) {
     if (number % 3 == 0) {
@@ -27,10 +28,10 @@ int main(void) {
             continue;
         }
         int number = stringToInt(numberText);
-        char phrase[40] = "";
+        char phrase[BUFFER_SIZE] = "";
         phraseBuilder(number, phrase);
-        if (!(strlen(phrase) > 0)) {
-            printf("%d\n", number);
+        if (phrase[0] == '\0') {
+            printf("%s\n", numberText);
         } else {
             printf("%s\n", phrase);
         }
