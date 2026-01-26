@@ -21,8 +21,8 @@ void *arrHighests(int *arrayOne, int arrayTwo) {
     for (int i = 0; i < NUM_ROLLS - 1; i++) arrayTwo[i] = arrayOne[i] > arrayOne[i + 1] ? arrayOne[i] : arrayOne[i + 1];
 }
 
-void sumHighests(int *array, int added) {
-    for(int i = 0; i < PICKED_ROLLS; i++) added += array[i];
+void sumHighests(int *array, int sum) {
+    for(int i = 0; i < PICKED_ROLLS; i++) sum += array[i];
 }
 
 int main(void) {
@@ -34,14 +34,15 @@ int main(void) {
            break;
         } 
         Character hero;
-        int abilities[NUM_SKILLS]; int rolls[NUM_ROLLS]; int roll = 0; int highests[PICKED_ROLLS]; int sum = 0;
+        int abilities[NUM_SKILLS]; int rolls[NUM_ROLLS]; int roll = 0; int highests[PICKED_ROLLS]; int value = 0;
         for (int i = 0; i < NUM_SKILLS; i++) {
             for (int i = 0; i < NUM_ROLLS; i++) {
                 srand(time(NULL));
                 roll = (rand() % 6) + 1;
                 rolls[i] = roll;
             }
-            arrHighests(rolls, highests); sumHighests(highests, &sum);
+            arrHighests(rolls, highests); sumHighests(highests, &value);
+            abilities[i] = value;
         }
     }
     return 0;
