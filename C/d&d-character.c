@@ -3,18 +3,13 @@
 #include <utils.h>
 #include <string.h>
 #include <time.h>
-#define NUM_SKILLS 6
+#include <math.h>
+#define NUM_ATTRIBUTES 6
 #define NUM_ROLLS 4
 #define PICKED_ROLLS 3
 
 typedef struct {
-    int strength;
-    int dexterity;
-    int constitutionModifier;
-    int intelligence;
-    int wisdom;
-    int charisma;
-    int hitpoints;
+    int abilities[NUM_ATTRIBUTES];
 } Character;
 
 void *arrHighests(int *arrayOne, int arrayTwo) {
@@ -34,15 +29,17 @@ int main(void) {
            break;
         } 
         Character hero;
-        int abilities[NUM_SKILLS]; int rolls[NUM_ROLLS]; int roll = 0; int highests[PICKED_ROLLS]; int value = 0;
-        for (int i = 0; i < NUM_SKILLS; i++) {
+        int rolls[NUM_ROLLS]; int roll = 0; int highests[PICKED_ROLLS]; int value = 0;
+        for (int i = 0; i < NUM_ATTRIBUTES; i++) {
             for (int i = 0; i < NUM_ROLLS; i++) {
                 srand(time(NULL));
                 roll = (rand() % 6) + 1;
                 rolls[i] = roll;
             }
             arrHighests(rolls, highests); sumHighests(highests, &value);
-            abilities[i] = value;
+            if (i == 2) hero.abilities[i] = (value - 10) / 2;
+            else hero.abilities[i] = value;
+            
         }
     }
     return 0;
